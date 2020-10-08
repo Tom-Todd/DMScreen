@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <menu id="menubar">
+    <submenu>
+      <attribute name="label">File</attribute>
+      <section>
+        <item>
+          <attribute name="label">New</attribute>
+          <attribute name="action">app.new</attribute>
+        </item>
+      </section>
+    </submenu>
+  </menu>
+</interface>
