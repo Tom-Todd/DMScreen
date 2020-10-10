@@ -2,7 +2,7 @@ import sys
 import gi
 
 gi.require_version("Gtk", "3.0")
-from gi.repository import GLib, Gio, Gtk
+from gi.repository import Gio, Gtk
 
 from dmscreen.gui.pages.characterpage import CharacterPage
 from dmscreen.gui.pages.homepage import HomePage
