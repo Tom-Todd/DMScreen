@@ -61,6 +61,20 @@ class DatabaseConnector():
         cur.execute(sql, ability_score_set)
         self.conn.commit()
 
+    def create_character_class(self, character_class):
+        sql = ''' INSERT INTO character_class(class,level)
+              VALUES(?,?) '''
+        cur = self.conn.cursor()
+        cur.execute(sql, character_class)
+        self.conn.commit()
+
+    def create_character_class_set(self, character_class_set):
+            sql = ''' INSERT INTO character_class_set(set_id, class_id)
+                  VALUES(?,?) '''
+            cur = self.conn.cursor()
+            cur.execute(sql, character_class_set)
+            self.conn.commit()
+
     def create_skill_set(self, ability_score_set):
         sql = ''' INSERT INTO skill_set(acrobatics,animal_handling,arcana,athletics,deception,history,
               insight,intimidation,ivestigation,medicine,nature,perception,performance,persuasion,religion,sleight_of_hand,stealth,survival)
