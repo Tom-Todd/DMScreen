@@ -1,9 +1,8 @@
 import sqlite3
 import os
+from sqlite3 import Error
 dir = os.path.dirname(__file__)
 filename = os.path.join(dir, 'db.sqlite')
-
-from sqlite3 import Error
 
 sql_create_ability_score_table = """ CREATE TABLE IF NOT EXISTS ability_score_set (
                                         id integer PRIMARY KEY,
@@ -37,6 +36,7 @@ sql_create_skills_table = """ CREATE TABLE IF NOT EXISTS skill_set (
                                         survival integer NOT NULL
                                     ); """
 
+
 class DatabaseConnector():
     conn = None
 
@@ -69,11 +69,11 @@ class DatabaseConnector():
         self.conn.commit()
 
     def create_character_class_set(self, character_class_set):
-            sql = ''' INSERT INTO character_class_set(set_id, class_id)
-                  VALUES(?,?) '''
-            cur = self.conn.cursor()
-            cur.execute(sql, character_class_set)
-            self.conn.commit()
+        sql = ''' INSERT INTO character_class_set(set_id, class_id)
+              VALUES(?,?) '''
+        cur = self.conn.cursor()
+        cur.execute(sql, character_class_set)
+        self.conn.commit()
 
     def create_skill_set(self, ability_score_set):
         sql = ''' INSERT INTO skill_set(acrobatics,animal_handling,arcana,athletics,deception,history,
