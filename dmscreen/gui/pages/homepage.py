@@ -1,7 +1,6 @@
-import gi
-
-gi.require_version("Gtk", "3.0")
+# import gi
 from gi.repository import Gtk
+
 
 class HomePage(Gtk.Box):
     def __init__(self):

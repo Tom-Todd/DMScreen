@@ -1,8 +1,7 @@
-import gi
+# import gi
 import sys
-
-gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk
+
 
 class CharacterPage(Gtk.Box):
     def __init__(self):
@@ -10,7 +9,7 @@ class CharacterPage(Gtk.Box):
         builder = Gtk.Builder()
         try:
             builder.add_from_file("dmscreen/gui/charactersheet.ui")
-        except:
+        except FileNotFoundError:
             print("file not found")
             sys.exit()
         box = builder.get_object("box_player_sheet")

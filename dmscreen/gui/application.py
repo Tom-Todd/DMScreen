@@ -1,9 +1,5 @@
 import sys
-import gi
-
-gi.require_version("Gtk", "3.0")
 from gi.repository import Gio, Gtk
-
 from dmscreen.gui.pages.characterpage import CharacterPage
 from dmscreen.gui.pages.homepage import HomePage
 
@@ -28,7 +24,7 @@ UI_STRING = """
 class AppWindow(Gtk.ApplicationWindow):
 
     def __init__(self, app):
-        Gtk.Window.__init__(self, title="DM Screen", application=app)
+        Gtk.ApplicationWindow.__init__(self, title="DM Screen", application=app)
         self.set_default_size(600, 600)
         self.set_border_width(3)
         self.notebook = Gtk.Notebook()
@@ -39,6 +35,7 @@ class AppWindow(Gtk.ApplicationWindow):
 
         self.page2 = CharacterPage()
         self.notebook.append_page(self.page2, Gtk.Label(label="Characters"))
+
 
 class Application(Gtk.Application):
 
@@ -61,7 +58,7 @@ class Application(Gtk.Application):
         builder = Gtk.Builder()
         try:
             builder.add_from_file("dmscreen/gui/menubar.ui")
-        except:
+        except FileNotFoundError:
             print("file not found")
             sys.exit()
 
