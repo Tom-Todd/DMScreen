@@ -1,4 +1,4 @@
-# DMScreen
+# DMScreen [![Build Status](https://travis-ci.org/Tom-Todd/DMScreen.svg?branch=develop)](https://travis-ci.org/Tom-Todd/DMScreen)
 An application for keeping track of and generating information for Dungeon Masters (DM) in D&amp;D fifth edition. 
 
 ## SRD support
