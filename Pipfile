@@ -1,0 +1,9 @@
+[dev-packages]
+flake8 = '>=3.7'
+isort = '>=4.3'
+PyGObject-stubs = '*'
+pylint = '==2.4.4'
+pipenv-to-requirements = "*"
+
+[packages]
+PyGObject = '>=3.36'
