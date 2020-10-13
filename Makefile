@@ -1,7 +1,8 @@
 PIPENV:=pipenv
-# ===============
-# Static analysis
-# ===============
+
+clean-pyc:
+	find . -name '*.pyc' -exec rm --force {} +
+	find . -name '*.pyo' -exec rm --force {} +
 
 check: flake8 pylint
 
