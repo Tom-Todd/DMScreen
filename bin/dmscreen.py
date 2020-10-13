@@ -13,7 +13,7 @@ else:
     sys.path.insert(0, os.path.normpath(os.path.join(LAUNCH_PATH, "../lib/dmscreen")))
 
 
-from dmscreen.gui.application import Application   # pylint: disable=no-name-in-module noqa:E402
+from dmscreen.gui.application import Application   # pylint: disable=no-name-in-module # noqa:E402
 
 app = Application()
 sys.exit(app.run(sys.argv))
