@@ -1,4 +1,3 @@
-# import gi
 import sys
 from gi.repository import Gtk
 
