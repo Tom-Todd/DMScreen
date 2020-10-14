@@ -8,5 +8,3 @@ class HomePage(Gtk.Box):
         Gtk.Box.__init__(self)
         self.set_border_width(10)
         self.add(Gtk.Label(label="Page 1"))
-
-        self.spell_store = Gtk.ListStore(int, str)
