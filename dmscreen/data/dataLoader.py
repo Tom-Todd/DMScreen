@@ -1,24 +1,17 @@
 import json
 
 
-def ParseData():
-    f = open('dmscreen/data/allSpells.json',)
-
+def GetSpellNames(level):
+    f = open('dmscreen/data/allSpells-new.json',)
     data = json.load(f)
+    spells = []
 
-    id = 0
     for i in data["allSpells"]:
-        classes = []
-        for s in i["classes"].split(", "):
-            classes.append(GetClassID(s))
+        if i["level"] == level:
+            spells.append([i["id"], i["name"]])
 
-        i["classes"] = classes
-        i["id"] = id
-        id += 1
-
-    f2 = open('dmscreen/data/allSpells-new.json', 'w')
-    json.dump(data, f2, indent=4)
     f.close()
+    return spells
 
 
 def GetClassID(x):
