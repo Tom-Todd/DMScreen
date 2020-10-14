@@ -13,7 +13,6 @@ class HomePage(Gtk.Box):
         for data in GetSpellNames():
             spell_store.append(data)
 
-
         combo = Gtk.ComboBox.new_with_model(spell_store)
         renderer_text = Gtk.CellRendererText()
         combo.pack_start(renderer_text, True)

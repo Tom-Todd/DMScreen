@@ -20,16 +20,18 @@ def ParseData():
     json.dump(data, f2, indent=4)
     f.close()
 
+
 def GetSpellNames():
     f = open('dmscreen/data/allSpells-new.json',)
     data = json.load(f)
     spells = []
 
     for i in data["allSpells"]:
-        spells.append([i["id"],i["name"]])
-        
+        spells.append([i["id"], i["name"]])
+
     f.close()
     return spells
+
 
 def GetClassID(x):
     return {
