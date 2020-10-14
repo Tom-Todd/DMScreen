@@ -14,7 +14,7 @@ def ParseData():
 
         i["classes"] = classes
         i["id"] = id
-        id+=1
+        id += 1
 
     f2 = open('dmscreen/data/allSpells-new.json', 'w')
     json.dump(data, f2, indent=4)
@@ -23,16 +23,16 @@ def ParseData():
 
 def GetClassID(x):
     return {
-        'Barbarian' : 0,
-        'Bard' : 1,
-        'Cleric' : 2,
-        'Druid' : 3,
-        'Fighter' : 4,
-        'Monk' : 5,
-        'Paladin' : 6,
-        'Ranger' : 7,
-        'Rogue' : 8,
-        'Sorcerer' : 9,
-        'Warlock' : 10,
-        'Wizard' : 11,
+        'Barbarian': 0,
+        'Bard': 1,
+        'Cleric': 2,
+        'Druid': 3,
+        'Fighter': 4,
+        'Monk': 5,
+        'Paladin': 6,
+        'Ranger': 7,
+        'Rogue': 8,
+        'Sorcerer': 9,
+        'Warlock': 10,
+        'Wizard': 11,
     }.get(x)
