@@ -4,10 +4,11 @@ python:
   - "3.6"
 env:
   - PIPENV_VERBOSITY=-1
+
 virtualenv:
   system_site_packages: true
 services:
-  - xvfb
+  - docker 
 addons:
   apt:
     update: true
@@ -19,11 +20,36 @@ addons:
       - gir1.2-gnomedesktop-3.0
       - gir1.2-webkit2-4.0
       - gir1.2-notify-0.7
+      
+before_install:
+- export BUILD_VERSION=$(date "+%Y%m%d").$TRAVIS_BUILD_NUMBER
+- export PACKAGE_NAME_VERSION=$PACKAGE_NAME.$BUILD_VERSION.deb
+
 install:
-  - pip install --upgrade pip pypresence~=3.3.2 pipenv
-  - pipenv install --dev --deploy --ignore-pipfile
+- pip install --upgrade pip pypresence~=3.3.2 pipenv setuptools virtualenv
+- pipenv install --dev --deploy --ignore-pipfile
+- sudo apt-get install devscripts python3-setuptools
+- sudo apt-get install debhelper dh-virtualenv
 script:
   - make check
+  - python3 setup.py build
+  - dch -m -i ""
+  - dpkg-buildpackage -uc -us -b --build-by="thomas.m.a.todd@gmail.com"
+  - dpkg-deb -I ../dmscreen_*.deb
+  - mv ../dmscreen_*.deb $PACKAGE_NAME_VERSION
+
+after_success:
+- ls -l $PACKAGE_NAME_VERSION
+- md5sum $PACKAGE_NAME_VERSION
+- dpkg --contents $PACKAGE_NAME_VERSION
+
+deploy:
+    provider: releases
+    token: $GITHUB_TOKEN
+    file: $PACKAGE_NAME_VERSION
+    skip_cleanup: true
+    on:
+      tags: true
 
 # Cache the pip dependencies
 cache: pip
