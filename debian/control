@@ -1,0 +1,27 @@
+Source: dmscreen
+Section: games
+Priority: optional
+Maintainer: Tom Todd <thomas.m.a.todd@gmail.com>
+Build-Depends: debhelper (>= 9), python3.6, python3-setuptools, dh-virtualenv (>> 0.6)
+Rules-Requires-Root: no
+Standards-Version: 4.5.0
+Vcs-Browser: https://github.com/Tom-Todd/DMScreen
+Vcs-Git: https://github.com/Tom-Todd/DMScreen.git
+
+Package: dmscreen
+Architecture: all
+Depends: ${misc:Depends},
+         ${python3:Depends},
+         python3-yaml,
+         python3-requests,
+         python3-pil,
+         python3-gi,
+         python3-setproctitle,
+         python3-magic,
+         python3-distro,
+         gir1.2-gtk-3.0,
+         gir1.2-gnomedesktop-3.0,
+         gir1.2-webkit2-4.0,
+         gir1.2-notify-0.7,
+		 make,
+Description: An application for keeping track of and generating information for dungeon masters in D&D fifth edition.
