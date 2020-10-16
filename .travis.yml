@@ -33,7 +33,7 @@ install:
 script:
   - make check
   - python3 setup.py build
-  - dch -m -i ""
+  - dch -m -i -U ""
   - dpkg-buildpackage -uc -us -b --build-by="thomas.m.a.todd@gmail.com"
   - dpkg-deb -I ../dmscreen_*.deb
   - mv ../dmscreen_*.deb $PACKAGE_NAME_VERSION
