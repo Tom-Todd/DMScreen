@@ -1,7 +1,7 @@
+from enum import Enum
 from dmscreen.models.ability_scores import AbilityScores
 from dmscreen.models.skills import Skills
 from dmscreen.models.classes import Class
-from enum import Enum
 
 
 class Alignment(Enum):
