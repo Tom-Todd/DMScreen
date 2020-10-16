@@ -27,6 +27,7 @@ setup(
         'dmscreen.gui',
         'dmscreen.gui.pages',
         'dmscreen.util',
+        'dmscreen.models',
     ],
     scripts=['bin/dmscreen.py'],
     description='D&D 5e DM Screen Application',
