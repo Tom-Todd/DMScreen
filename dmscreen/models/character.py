@@ -1,5 +1,6 @@
-from dmscreen.models.abilityScores import AbilityScores
+from dmscreen.models.ability_scores import AbilityScores
 from dmscreen.models.skills import Skills
+from dmscreen.models.classes import Class
 from enum import Enum
 
 
@@ -17,8 +18,8 @@ class Alignment(Enum):
 
 class Character:
     def __init__(self):
-        self.name = ""
-        self.classes = []
+        self._name = ""
+        self.classes = [Class]
         self.level = 1
         self.xp = 0
         self.ac = 0
@@ -34,8 +35,8 @@ class Character:
 
     @property
     def name(self):
-        return self.__name
+        return self._name
 
     @name.setter
     def name(self, name):
-        self.__name = name
+        self._name = name
