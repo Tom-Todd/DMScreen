@@ -1,14 +1,17 @@
+from enum import Enum
 from dmscreen.util.util import calculate_modifier
 
+class ScoreType(Enum):
+    STRENGTH = 0,
+    DEXTERITY = 1,
+    CONSTITUTION = 2,
+    INTELLIGENCE = 3,
+    WISDOM = 4,
+    CHARISMA = 5,
 
 class AbilityScores:
     def __init__(self):
-        self.strength = AbilityScore()
-        self.dexterity = AbilityScore()
-        self.constitution = AbilityScore()
-        self.intelligence = AbilityScore()
-        self.wisdom = AbilityScore()
-        self.charisma = AbilityScore()
+        self.scores = [AbilityScore() for i in range(6)]
 
 
 class AbilityScore:
