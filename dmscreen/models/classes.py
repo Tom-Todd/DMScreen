@@ -12,3 +12,7 @@ class Class:
     @property
     def id(self):
         return self._id
+
+    @id.setter
+    def id(self, id_):
+        self._id = id_
