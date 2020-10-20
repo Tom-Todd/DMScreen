@@ -21,6 +21,8 @@ class CharacterPage(Gtk.Box):
         class_ = Class()
         class_.id = 1
         self.character.classes.append(class_)
+        self.character.spells.spells[0][0] = 31
+        self.character.spells.spells[0][1] = 200
 
         SpellsSheet(spells_box, self.character)
 

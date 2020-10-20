@@ -14,6 +14,19 @@ def get_spell_names(class_id, level_id):
     return spells
 
 
+def get_spell_names_for_class(class_id):
+    f = open('dmscreen/data/allSpells-new.json',)
+    data = json.load(f)
+    spells = [[] for y in range(10)]
+
+    for i in data["allSpells"]:
+        if class_id in i["classes"]:
+            spells[i["level"]].append([i["id"], i["name"]])
+
+    f.close()
+    return spells
+
+
 def get_class_id(x):
     return {
         'Barbarian': 0,

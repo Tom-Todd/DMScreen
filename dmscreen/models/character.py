@@ -9,6 +9,7 @@ from dmscreen.models.classes import Class
 from dmscreen.models.race import Race
 from dmscreen.models.dice import RollType
 from dmscreen.models.armor import Armor
+from dmscreen.models.spells import SpellsList
 
 
 class Alignment(Enum):
@@ -44,6 +45,7 @@ class Character:
         self.is_player_character = False
         self.alignment = Alignment.NEUTRAL
         self.languages = []
+        self.spells = SpellsList()
 
     @property
     def name(self):
