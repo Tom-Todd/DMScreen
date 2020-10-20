@@ -1,6 +1,7 @@
 import json
 from dmscreen.data.dataLoader import GetClassID
 
+
 def ParseData():
     f = open('dmscreen/data/allSpells.json',)
 
