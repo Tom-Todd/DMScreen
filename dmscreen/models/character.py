@@ -8,6 +8,7 @@ from dmscreen.models.skills import Skills
 from dmscreen.models.classes import Class
 from dmscreen.models.race import Race
 from dmscreen.models.dice import RollType
+from dmscreen.models.armor import Armor
 
 
 class Alignment(Enum):
@@ -36,7 +37,7 @@ class Character:
         self.race = Race()
         self.level = 1
         self.xp = 0
-        self.ac = 0
+        self.armor = Armor()
         self.ability_scores = AbilityScores()
         self.skills = Skills()
         self.hit_points = HitPoints()
@@ -67,6 +68,15 @@ class Character:
     @property
     def speed(self):
         return self.race.speed
+
+    @property
+    def ac(self):
+        if self.armor.use_dex_mod:
+            mod = min(self.ability_scores.scores[ScoreType.DEXTERITY], 2) if \
+                self.armor.dex_mod_capped else \
+                self.ability_scores.scores[ScoreType.DEXTERITY]
+            return self.armor.ac + mod
+        return self.armor.ac
 
     @property
     def know_languages(self):
