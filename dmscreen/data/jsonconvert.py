@@ -1,5 +1,5 @@
 import json
-from dmscreen.data.dataLoader import get_class_id
+from dmscreen.data.data_loader import get_class_id
 
 
 def ParseData():
