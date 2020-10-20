@@ -52,5 +52,5 @@ class CharacterPage(Gtk.Box):
         tree_iter = combo.get_active_iter()
         if tree_iter is not None:
             model = combo.get_model()
-            id = model[tree_iter][0]
-            print(id)
+            id_ = model[tree_iter][0]
+            print(id_)
