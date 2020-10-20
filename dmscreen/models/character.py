@@ -1,9 +1,12 @@
 # pylint: disable=too-many-instance-attributes
 # number of attributes is reasonable in this case
+import math
 from enum import Enum
 from dmscreen.models.ability_scores import AbilityScores
+from dmscreen.models.ability_scores import ScoreType
 from dmscreen.models.skills import Skills
 from dmscreen.models.classes import Class
+from dmscreen.models.race import Race
 from dmscreen.models.dice import RollType
 
 
@@ -30,17 +33,16 @@ class Character:
     def __init__(self):
         self._name = ""
         self.classes = [Class]
+        self.race = Race()
         self.level = 1
         self.xp = 0
         self.ac = 0
-        self.speed = 0
-        self.ability_score = AbilityScores()
+        self.ability_scores = AbilityScores()
         self.skills = Skills()
         self.hit_points = HitPoints()
-        self.proficiency_bonus = 0
-        self.passive_wisdom = 0
         self.is_player_character = False
         self.alignment = Alignment.NEUTRAL
+        self.languages = []
 
     @property
     def name(self):
@@ -49,3 +51,24 @@ class Character:
     @name.setter
     def name(self, name):
         self._name = name
+
+    def get_spell_save_dc(self, class_id):
+        spell_score = self.ability_scores.scores[self.classes[class_id].spell_casting_ability]
+        return 8 + spell_score.modifier + self.proficiency_bonus
+
+    @property
+    def proficiency_bonus(self):
+        return math.ceil(1 + 0.25 * self.level)
+
+    @property
+    def passive_wisdom(self):
+        return 10 + self.ability_scores.scores[ScoreType.WISDOM].modifier
+
+    @property
+    def speed(self):
+        return self.race.speed
+
+    @property
+    def know_languages(self):
+        """Combine and return languages from character race with languages specific to this character"""
+        return sorted(list(set(self.race.languages) | set(self.languages)))
