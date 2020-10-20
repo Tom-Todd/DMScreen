@@ -1,20 +1,20 @@
 import json
 
 
-def GetSpellNames(level):
+def get_spell_names(class_id, level_id):
     f = open('dmscreen/data/allSpells-new.json',)
     data = json.load(f)
     spells = []
 
     for i in data["allSpells"]:
-        if i["level"] == level:
+        if i["level"] == level_id and (class_id == -1 or class_id in i["classes"]):
             spells.append([i["id"], i["name"]])
 
     f.close()
     return spells
 
 
-def GetClassID(x):
+def get_class_id(x):
     return {
         'Barbarian': 0,
         'Bard': 1,

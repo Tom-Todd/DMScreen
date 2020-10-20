@@ -70,5 +70,5 @@ class Character:
 
     @property
     def know_languages(self):
-        """Combine and return languages from character race with languages specific to this character"""
+        """Combine and return languages known by character"""
         return sorted(list(set(self.race.languages) | set(self.languages)))

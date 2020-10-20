@@ -8,3 +8,7 @@ class Class:
         self._id = 0
         self._name = ""
         self.spell_casting_ability = ScoreType.CHARISMA
+
+    @property
+    def id(self):
+        return self._id

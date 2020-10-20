@@ -1,6 +1,7 @@
 import sys
 from gi.repository import Gtk
-from dmscreen.data.dataLoader import GetSpellNames
+from dmscreen.data.dataLoader import get_spell_names
+from dmscreen.models.character import Character
 
 
 class CharacterPage(Gtk.Box):
@@ -17,11 +18,13 @@ class CharacterPage(Gtk.Box):
         self.spell_store_cantrips = Gtk.ListStore(int, str)
         self.spell_store_level_one = Gtk.ListStore(int, str)
 
-        for data in GetSpellNames(0):
-            self.spell_store_cantrips.append(data)
+        self.character = Character()
 
-        for data in GetSpellNames(1):
-            self.spell_store_level_one.append(data)
+        for class_ in self.character.classes:
+            for data in get_spell_names(class_.id, 0):
+                self.spell_store_cantrips.append(data)
+            for data in get_spell_names(class_.id, 1):
+                self.spell_store_level_one.append(data)
 
         label_cantrips = Gtk.Label(label="Cantrips (Level 0)")
         label_spells1 = Gtk.Label(label="Level 1")
