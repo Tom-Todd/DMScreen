@@ -56,7 +56,7 @@ sql_create_character_table = """ CREATE TABLE IF NOT EXISTS character (
 sql_create_spell_set_table = """ CREATE TABLE IF NOT EXISTS spell_set (
                                         id integer PRIMARY KEY,
                                         set_id integer NOT NULL,
-                                        spell_id integer NOT NULL,
+                                        spell_id integer NOT NULL
                                     ); """
 
 
@@ -67,10 +67,12 @@ class DatabaseConnector(metaclass=Singleton):
         """ create a database connection to SQLite database """
         try:
             self.conn = sqlite3.connect(filename)
+            self.conn.row_factory = sqlite3.Row
+            self.create_table(sql_create_spell_set_table)
             self.create_table(sql_create_ability_score_table)
             self.create_table(sql_create_skills_table)
             self.create_table(sql_create_character_table)
-            self.create_table(sql_create_spell_set_table)
+            print("create spell set")
         except Error as e:
             print(e)
 
@@ -98,12 +100,25 @@ class DatabaseConnector(metaclass=Singleton):
 
     def create_character(self, character):
         sql = ''' INSERT INTO character(class_set_id, race_id, level, armor_id,
-                                        abilit_score_id, skills_id, hit_points_id,
-                                        languages_id, sepll_set_id)
-              VALUES(?,?) '''
+                                        ability_score_id, skills_id, hit_points_id,
+                                        alignment, languages_id, spell_set_id)
+              VALUES(?,?,?,?,?,?,?,?,?,?) '''
         cur = self.conn.cursor()
         cur.execute(sql, character)
         self.conn.commit()
+
+    def select_character_by_id(self, id_):
+        cur = self.conn.cursor()
+        cur.execute("SELECT * FROM character WHERE id=?", (id_,))
+        row = cur.fetchone()
+        return row
+
+    def select_spells_by_set_id(self, set_id):
+        cur = self.conn.cursor()
+        cur.execute("SELECT * FROM spell_set WHERE set_id=?", (set_id,))
+        rows = cur.fetchall()
+        for row in rows:
+            print(row[1])
 
     def create_spell(self, spell):
         sql = ''' INSERT INTO spell_set(set_id, spell_id)
