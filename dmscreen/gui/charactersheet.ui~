@@ -1915,7 +1915,7 @@ and Notes</property>
           </packing>
         </child>
         <child>
-          <object class="GtkBox" id="character_sheet_tab_spells">
+          <object class="GtkBox">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
             <property name="orientation">vertical</property>

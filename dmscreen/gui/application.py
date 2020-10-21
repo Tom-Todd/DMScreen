@@ -1,7 +1,12 @@
+# pylint: disable=wrong-import-position
 import sys
-from gi.repository import Gio, Gtk
-from dmscreen.gui.pages.characterpage import CharacterPage
-from dmscreen.gui.pages.homepage import HomePage
+import gi
+gi.require_version('Gtk', '3.0')
+from gi.repository import Gio, Gtk  # noqa: E402
+
+from dmscreen.gui.pages.characterpage import CharacterPage  # noqa: E402
+from dmscreen.gui.pages.homepage import HomePage  # noqa: E402
+from dmscreen.data.jsonconvert import ParseData  # noqa: E402
 
 UI_STRING = """
 <?xml version="1.0" encoding="UTF-8"?>
@@ -54,6 +59,8 @@ class Application(Gtk.Application):
 
     def do_startup(self):
         Gtk.Application.do_startup(self)
+
+        ParseData()
 
         builder = Gtk.Builder()
         try:
