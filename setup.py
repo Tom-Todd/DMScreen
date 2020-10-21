@@ -26,6 +26,8 @@ setup(
         'dmscreen',
         'dmscreen.gui',
         'dmscreen.gui.pages',
+        'dmscreen.util',
+        'dmscreen.models',
         'dmscreen.data',
     ],
     scripts=['bin/dmscreen.py'],

@@ -1,5 +1,5 @@
 import json
-from dmscreen.data.dataLoader import GetClassID
+from dmscreen.data.data_loader import get_class_id
 
 
 def ParseData():
@@ -11,7 +11,7 @@ def ParseData():
     for i in data["allSpells"]:
         classes = []
         for s in i["classes"].split(", "):
-            classes.append(GetClassID(s))
+            classes.append(get_class_id(s))
 
         i["classes"] = classes
         i["id"] = id_
