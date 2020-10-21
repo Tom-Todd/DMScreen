@@ -1,3 +1,9 @@
+from peewee import *
+
+
+class RaceModel(Model):
+    name = CharField()
+    speed = IntegerField()
 
 
 class Race:

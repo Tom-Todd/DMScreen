@@ -2,14 +2,18 @@
 # number of attributes is reasonable in this case
 import math
 from enum import Enum
+from peewee import *
 from dmscreen.models.ability_scores import AbilityScores
 from dmscreen.models.ability_scores import ScoreType
 from dmscreen.models.skills import Skills
 from dmscreen.models.classes import Class
+from dmscreen.models.classes import ClassSet
 from dmscreen.models.race import Race
 from dmscreen.models.dice import RollType
 from dmscreen.models.armor import Armor
 from dmscreen.models.spells import SpellsList
+from dmscreen.models.spells import SpellSetModel
+from dmscreen.util.model import BaseModel
 
 
 class Alignment(Enum):
@@ -31,10 +35,33 @@ class HitPoints:
         self.die = RollType()
 
 
+db = SqliteDatabase('people.db')
+db.connect()
+
+
+class CharacterModel(BaseModel):
+    name = CharField()
+    # classes = ForeignKeyField(ClassSet, to_field="set_id")
+    # race = ForeignKeyField(Race)
+    level = IntegerField()
+    xp = IntegerField()
+    # armor = ForeignKeyField(Armor)
+    # ability_scores = AbilityScores()
+    # skills = Skills()
+    # hit_points = HitPoints()
+    # is_player_character = False
+    # alignment = Alignment.NEUTRAL
+    # languages = []
+    spell_set = IntegerField()
+
+
+db.create_tables([CharacterModel, SpellSetModel])
+
+
 class Character:
     def __init__(self):
         self._name = ""
-        self.classes = [Class]
+        self.classes = []
         self.race = Race()
         self.level = 1
         self.xp = 0
@@ -46,6 +73,20 @@ class Character:
         self.alignment = Alignment.NEUTRAL
         self.languages = []
         self.spells = SpellsList()
+        self.create_character_from_model()
+
+    def create_character_from_model(self):
+        query = CharacterModel.select().where(CharacterModel.name == "test")
+        for model in query:
+            model: CharacterModel
+            print(model.id)
+            print(model.name)
+            print(model.level)
+            print(model.xp)
+            spell_sets = SpellSetModel.select().where(SpellSetModel.spell_set_id == model.spell_set)
+            for spell_set in spell_sets:
+                spell_set: SpellSetModel
+                print(spell_set.spell_id)
 
     @property
     def name(self):

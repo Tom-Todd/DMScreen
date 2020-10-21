@@ -1,18 +1,14 @@
 # pylint: disable=too-many-instance-attributes
 # number of attributes is reasonable in this case
-from dmscreen.models.ability_scores import ScoreType
+from peewee import *
 
 
-class Class:
-    def __init__(self):
-        self._id = 0
-        self._name = ""
-        self.spell_casting_ability = ScoreType.CHARISMA
+class Class(Model):
+    class_id = IntegerField()
+    name = CharField()
+    spell_casting_ability = IntegerField()
 
-    @property
-    def id(self):
-        return self._id
 
-    @id.setter
-    def id(self, id_):
-        self._id = id_
+class ClassSet(Model):
+    set_id = IntegerField()
+    class_id = IntegerField()

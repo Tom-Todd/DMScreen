@@ -7,6 +7,8 @@ from gi.repository import Gio, Gtk  # noqa: E402
 from dmscreen.gui.pages.character_page import CharacterPage  # noqa: E402
 from dmscreen.gui.pages.home_page import HomePage  # noqa: E402
 from dmscreen.data.jsonconvert import ParseData  # noqa: E402
+from dmscreen.models.character import CharacterModel  # noqa: E402
+from dmscreen.models.spells import SpellSetModel  # noqa: E402
 
 UI_STRING = """
 <?xml version="1.0" encoding="UTF-8"?>
@@ -61,6 +63,15 @@ class Application(Gtk.Application):
         Gtk.Application.do_startup(self)
 
         ParseData()
+
+        test = CharacterModel(name="test", level=1, xp=0, spell_set=0)
+        test_spell_set = SpellSetModel(spell_set_id=0, spell_id=1)
+        test_spell_set1 = SpellSetModel(spell_set_id=0, spell_id=2)
+        test_spell_set2 = SpellSetModel(spell_set_id=0, spell_id=3)
+        test.save()
+        test_spell_set.save()
+        test_spell_set1.save()
+        test_spell_set2.save()
 
         builder = Gtk.Builder()
         try:

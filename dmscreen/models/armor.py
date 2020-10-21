@@ -1,4 +1,5 @@
 from enum import Enum
+from peewee import *
 
 
 class ArmorClass(Enum):
@@ -7,10 +8,13 @@ class ArmorClass(Enum):
     HEAVY = 2
 
 
-class Armor:
-    def __init__(self):
-        self.ac = 0
-        self.use_dex_mod = False
-        self.dex_mod_capped = False
-        self.dex_mod_max = 2
-        self.armor_class = ArmorClass.LIGHT
+class ArmorModel(Model):
+    armor_id = IntegerField()
+    ac = IntegerField()
+    use_dex_mod = BooleanField()
+    dex_mod_max = IntegerField()
+    armor_class = IntegerField()
+
+
+class Armor(Model):
+    pass
