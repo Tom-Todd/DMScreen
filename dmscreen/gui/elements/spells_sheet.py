@@ -1,5 +1,4 @@
 from gi.repository import Gtk
-from dmscreen.data.data_loader import get_spell_names
 from dmscreen.data.data_loader import get_spell_names_for_class
 
 
