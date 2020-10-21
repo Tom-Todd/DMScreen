@@ -1,6 +1,7 @@
 import sqlite3
 import os
 from sqlite3 import Error
+from dmscreen.util.singleton import Singleton
 dir_ = os.path.dirname(__file__)
 filename = os.path.join(dir_, 'db.sqlite')
 
@@ -59,7 +60,7 @@ sql_create_spell_set_table = """ CREATE TABLE IF NOT EXISTS spell_set (
                                     ); """
 
 
-class DatabaseConnector:
+class DatabaseConnector(metaclass=Singleton):
     conn = None
 
     def create_connection(self):
